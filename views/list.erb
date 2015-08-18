@@ -14,6 +14,23 @@
     <p>There are no tasks!</p>
   <% end %>
 
+  <h3>Add a task to <%= @list.name() %> </h3>
+
+  <form action="/tasks" method="post">
+    <input id="list_id" name="list_id" type="hidden" value="<%= @list.id() %>">
+
+    <label for="description">Description of the task:</label>
+    <input type="text" name="description" id="description">
+
+    <button class="btn" type="submit">Submit</button>
+
+  </form>
+
+<br>
+<br>
   <div class='container'>
     <a href="/"><button class='btn'> Home</a>
+    <a href="/lists/new"><button class='btn'>Add New List</a>
+    <a href="/clear/task"><button class='btn'>Clear tasks</a>
+
   </div>
