@@ -1,1 +1,24 @@
 <h1>Welcome To-Do</h1>
+
+<h2>Current Lists</h2>
+<% if @lists.any?() %>
+    <h3>Here are the lists:</h3>
+
+    <ul>
+      <% @lists.each() do |list| %>
+        <li>
+          <a href="/lists/<%= list.id() %>"><%= list.name() %></a>
+        </li>
+      <% end %>
+    </ul>
+
+  <% else %>
+    <p>
+      There are no lists at this time.
+    </p>
+<% end %>
+
+
+
+
+<a href="/lists/new">Add A New List</a>
