@@ -30,3 +30,26 @@ describe('visiting index to view list of lists', {:type => :feature}) do
     expect(page).to have_content('headphones')
   end
 end
+
+describe('details for a single list', {:type => :feature}) do
+  it('allow a user to click on a list and see the details for it') do
+    test_list = List.new({:name => 'Homework', :id => nil})
+    test_list.save()
+    test_task = Task.new({:description => 'learn SQL', :list_id => test_list.id()})
+    test_task.save()
+
+    visit('/')
+    click_link(test_list.name())
+    expect(page).to have_content(test_task.description())
+  end
+end
+
+describe('.find') do
+  it('returns a list by its ID') do
+    test_list = List.new({:name => 'Epicodus stuff', :id => nil})
+    test_list.save()
+    test_list2 = List.new({:name => 'home stuff', :id => nil})
+    test_list2.save()
+    expect(List.find(test_list2.id())).to(eq(test_list2))
+  end
+end

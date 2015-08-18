@@ -5,7 +5,7 @@ require('./lib/list')
 require('pg')
 also_reload('lib/**/*.rb')
 
-# DB = PG.connect({:dbname => "to_do_test"})
+DB = PG.connect({:dbname => "to_do_test"})
 
 get('/') do
   @lists = List.all()
@@ -21,4 +21,9 @@ post('/lists') do
   list = List.new({:name => name, :id => nil})
   list.save()
   erb(:list_success)
+end
+
+get('/lists/:id') do
+  @list = List.find(params.fetch('id').to_i())
+  erb(:list)
 end

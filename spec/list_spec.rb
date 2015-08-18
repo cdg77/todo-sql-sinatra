@@ -49,4 +49,16 @@ describe(List) do
       expect(list1).to(eq(list2))
     end
   end
+
+  describe('#tasks') do
+    it('returns an array of tasks for that list') do
+      test_list = List.new({:name => 'a suitable name', :id => nil})
+      test_list.save()
+      test_task_1 = Task.new({:description => "Feed Iguanas", :list_id => test_list.id()})
+      test_task_2 = Task.new({:description => "Feed Monitor", :list_id => test_list.id()})
+      test_task_1.save()
+      test_task_2.save()
+      expect(test_list.tasks()).to(eq([test_task_1, tesk_task_2]))
+    end
+  end
 end
