@@ -1,18 +1,1 @@
-<h1> To Do List </h1>
-
-<p> Your Tasks: </p>
-
-<ul>
-  <% @tasks.each() do |task| %>
-    <li><%= task.description() %></li>
-  <% end %>
-</ul>
-
-<p> Make a task </p>
-
-<form action='to_do' method = 'post'>
-  <label for = 'description'>Task Description </label>
-  <input id = 'description' name = 'description' placeholder='Enter task' type = 'text' autofocus required>
-
-  <button type = 'submit'>Add Task</button>
-</form>
+<h1>Welcome To-Do</h1>

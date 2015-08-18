@@ -2,6 +2,9 @@ require("rspec")
 require("pg")
 require("list")
 require("task")
+require('capybara/rspec')
+require('./app')
+
 
 DB = PG.connect({:dbname => "to_do_test"})
 

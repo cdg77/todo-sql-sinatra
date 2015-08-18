@@ -1,19 +1,24 @@
 require('sinatra')
 require('sinatra/reloader')
-also_reload('lib/**/*.rb')
-require('./lib/to_do')
+require('./lib/task')
+require('./lib/list')
 require('pg')
+also_reload('lib/**/*.rb')
 
-DB = PG.connect({:dbname => "to_do"})
+DB = PG.connect({:dbname => "to_do_test"})
 
 get('/') do
-  @tasks = Task.view()
+  # @lists = List.all()
   erb(:index)
 end
 
-post('/to_do') do
-  description = params.fetch('description')
-  task = Task.new(description)
-  task.save()
-  erb(:to_do)
+get('/lists/new') do
+  erb(:list_form)
+end
+
+post('/lists') do
+  name = params.fetch('name')
+  list = List.new({:name => name, :id => nil})
+  list.save()
+  erb(:list_success)
 end
